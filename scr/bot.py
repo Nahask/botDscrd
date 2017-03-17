@@ -32,12 +32,12 @@ async def on_message(message):
 @client.event
 async def on_member_join(member):
 	await sendWelcomeMessage(member)
-	
+
 
 async def sendWelcomeMessage(member):
 	dic = DictionaryHandler()
 	msg = dic.commandHandler('welcome')
-	await client.send_message(member,)
+	await client.send_message(member, msg)
 
 async def messageHandler(message):
 	await basicMessage(message)
