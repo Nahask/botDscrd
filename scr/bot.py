@@ -1,6 +1,7 @@
 import discord
 import logging
 import asyncio
+from discord import HTTPException
 from botKey import Key
 from dict import DictionaryHandler
 
@@ -22,6 +23,42 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-	r = DictionaryHandler()
+	dic = DictionaryHandler()
+	if message.author == client.user:
+		return
+	if message.content.startswith('!'):
+		await messageHandler(message)
+
+async def messageHandler(message):
+	await basicMessage(message)
+
+async def basicMessage(message):
+	dic = DictionaryHandler()
+
+	try:
+		roles = len(message.author.roles)
+	except Exception:
+		roles = 10
+
+	command = message.content[1::].split(' ')[0].lower()
+	msg = dic.commandHandler(message.content[1::], message.channel.name)
+	if msg != None:
+		if 'help' not in message.content:
+			await client.send_message(message.channel, msg)
+		else:
+			await client.send_message(message.author, msg)
+			try:
+				await client.delete_message(message)
+			except(HTTPException, Forbidden):
+				print("message delete error")
+	else:
+		msg = dic.commandHandler('invalid', message.channel.name)
+		await client.send_message(message.author, msg)
+		try:
+			await client.delete_message(message)
+		except (HTTPException, Forbidden):
+			print('message delete error')
+
+
 
 client.run(Key()._get_value())

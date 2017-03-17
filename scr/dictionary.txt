@@ -1,3 +1,9 @@
 {
-	"test":"coucou"
+	"help":"demerde toi",
+
+	"test":"coucou",
+	"test.coucou":"enculé",
+
+	"test.invalid":"invalid argument",
+	"invalid":"invalid command"
 }
