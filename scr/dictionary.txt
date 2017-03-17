@@ -1,5 +1,6 @@
 {
 	"help":"demerde toi",
+	"welcome":"salut mon srab ! bienvenue sur ce serveur epicé, si ta bsoin daide mamen tape !help.Des bisous",
 
 	"test":"coucou",
 	"test.coucou":"enculé",

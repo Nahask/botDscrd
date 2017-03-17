@@ -29,6 +29,16 @@ async def on_message(message):
 	if message.content.startswith('!'):
 		await messageHandler(message)
 
+@client.event
+async def on_member_join(member):
+	await sendWelcomeMessage(member)
+	
+
+async def sendWelcomeMessage(member):
+	dic = DictionaryHandler()
+	msg = dic.commandHandler('welcome')
+	await client.send_message(member,)
+
 async def messageHandler(message):
 	await basicMessage(message)
 
