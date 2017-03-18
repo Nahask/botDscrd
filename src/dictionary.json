@@ -1,0 +1,24 @@
+{
+	"help":"demerde toi",
+	"welcome":"salut mon srab, tape '''!help''' pour avoir une aide épicée",
+
+	"test":"coucou",
+	"test.coucou":"enculé",
+	"test.kek":"salut mon srab, tape ```!help``` pour avoir une aide épicée",
+
+	"test.invalid":"invalid argument",
+	"invalid":"invalid command",
+
+	"hidden":{
+		"shiro":{
+			"0":"ça postiche ?",
+			"1":"mdr",
+			"2":"kek",
+			"3":"Cfo7"
+		},
+		"thuwa":{
+			"0":"pute",
+			"1":"77 izi"
+		}
+	}
+}
