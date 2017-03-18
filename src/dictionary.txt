@@ -1,0 +1,10 @@
+{
+	"help":"demerde toi",
+	"welcome":"salut mon srab, tape !help pour avoir une aide épicée",
+
+	"test":"coucou",
+	"test.coucou":"enculé",
+
+	"test.invalid":"invalid argument",
+	"invalid":"invalid command"
+}
