@@ -23,11 +23,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-	dic = DictionaryHandler()
+	#dic = DictionaryHandler()
 	if message.author == client.user:
 		return
-	if message.content.startswith('!'):
-		await messageHandler(message)
+	await messageHandler(message)
 
 @client.event
 async def on_member_join(member):
@@ -40,7 +39,17 @@ async def sendWelcomeMessage(member):
 	await client.send_message(member, msg)
 
 async def messageHandler(message):
-	await basicMessage(message)
+	if message.content.startswith('!'):
+		await basicMessage(message)
+	else:
+		await hiddenMessage(message)
+
+async def hiddenMessage(message):
+	dic = DictionaryHandler()
+	msg = dic.hiddenMessageHandler(message.content, message.channel.name)
+	if msg != None:
+		await client.send_message(message.channel, msg)
+
 
 async def basicMessage(message):
 	dic = DictionaryHandler()
@@ -59,14 +68,14 @@ async def basicMessage(message):
 			await client.send_message(message.author, msg)
 			try:
 				await client.delete_message(message)
-			except(HTTPException, Forbidden):
+			except(HTTPException):
 				print("message delete error")
 	else:
 		msg = dic.commandHandler('invalid', message.channel.name)
 		await client.send_message(message.author, msg)
 		try:
 			await client.delete_message(message)
-		except (HTTPException, Forbidden):
+		except (HTTPException):
 			print('message delete error')
 
 

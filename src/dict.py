@@ -1,11 +1,15 @@
 import json
+import random
 
 class DictionaryHandler(object):
 	"""docstring for DictionaryHandler"""
 	def __init__(self):
-		self.file = './dictionary.txt'
+		self.file = './dictionary.json'
 		self.dictionary = {}
+		self.hidden = []
 		self.loadDict()
+		for test in self.dictionary['hidden']:
+			self.hidden.append(test)
 		self.loop = 0
 
 	def loadDict(self):
@@ -30,8 +34,20 @@ class DictionaryHandler(object):
 			entryText = entry.split('.')[0] if isinstance(entry, str) else ''
 			chName = channelName if isinstance(channelName, str) else ''
 			return self.readEntry(entryText + '.' + chName, chName)
-		
 
-	def commandHandler(self, params, channelName = ''):
+	def selectResponse(self, target, channelName):
+		arrayTargetSize = len(self.dictionary['hidden'][target])
+		randomMessage  = random.randint(0, arrayTargetSize)
+		message = self.dictionary['hidden'][target][str(randomMessage)]
+		return(message)
+
+
+
+	def hiddenMessageHandler(self, message, channelName = ''):
+		for target in self.hidden:
+			if target in message:
+				return self.selectResponse(target, channelName)
+
+	def commandHandler(self, message, channelName = ''):
 		self.loop = 0
-		return self.readEntry('.'.join(params.split(' ')), channelName)
+		return self.readEntry('.'.join(message.split(' ')), channelName)
