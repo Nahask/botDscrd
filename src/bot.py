@@ -32,6 +32,11 @@ async def on_message(message):
 async def on_member_join(member):
 	await sendWelcomeMessage(member)
 
+@client.event
+async def on_server_emojis_update(before, after):
+	print(after)
+	print(client.get_all_channels())
+
 
 async def sendWelcomeMessage(member):
 	dic = DictionaryHandler()
@@ -49,7 +54,6 @@ async def hiddenMessage(message):
 	msg = dic.hiddenMessageHandler(message.content, message.channel.name)
 	if msg != None:
 		await client.send_message(message.channel, msg)
-
 
 async def basicMessage(message):
 	dic = DictionaryHandler()
