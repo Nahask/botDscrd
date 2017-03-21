@@ -37,7 +37,7 @@ class DictionaryHandler(object):
 
 	def selectResponse(self, target, channelName):
 		arrayTargetSize = len(self.dictionary['hidden'][target])
-		randomMessage  = random.randint(0, arrayTargetSize)
+		randomMessage  = random.randint(0, arrayTargetSize - 1)
 		message = self.dictionary['hidden'][target][str(randomMessage)]
 		return(message)
 
